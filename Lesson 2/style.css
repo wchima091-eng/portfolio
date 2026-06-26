@@ -1,0 +1,187 @@
+/* Modern Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at 50% 50%, #1a2639 0%, #0b111e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e2e8f0;
+    padding: 20px;
+}
+
+/* Container */
+.converter-container {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Header Styles */
+.converter-header {
+    text-align: center;
+}
+
+.converter-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.converter-header p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* Main Dashboard Card (Glassmorphic Design) */
+.converter-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Controls */
+.input-group, .output-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+/* Output Input Specific Styles */
+#decimalOutput {
+    background: rgba(15, 23, 42, 0.4);
+    border-color: rgba(255, 255, 255, 0.05);
+    color: #38bdf8;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* Interactive Button */
+.primary-btn {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.primary-btn:hover {
+    background: #0369a1;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+}
+
+/* Validation System */
+.error-message {
+    color: #f87171;
+    font-size: 0.8rem;
+    display: none;
+    margin-top: 2px;
+}
+
+.input-group.invalid input {
+    border-color: #f87171;
+    background: rgba(127, 29, 29, 0.2);
+}
+
+.input-group.invalid .error-message {
+    display: block;
+}
+
+/* Footer / Tech Badges */
+.tech-stack {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.badge {
+    flex: 1;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge .icon {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.badge p {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+/* Responsive Scaling */
+@media (max-width: 400px) {
+    .converter-card {
+        padding: 24px;
+    }
+    .tech-stack {
+        flex-direction: column;
+    }
+}

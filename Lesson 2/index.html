@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chima's Grade Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="converter-container">
+        <header class="converter-header">
+            <h1>Chima's Grade Converter</h1>
+            <p>Binary-to-Decimal Grade Converter & Calculator</p>
+        </header>
+
+        <main class="converter-card">
+            <!-- Input Section -->
+            <div class="input-group">
+                <label for="binaryInput">8-Bit Binary Input</label>
+                <input 
+                    type="text" 
+                    id="binaryInput" 
+                    placeholder="e.g., 01001011" 
+                    maxlength="8"
+                    autocomplete="off"
+                >
+                <span class="error-message" id="errorMessage">Please enter a valid 8-bit binary number (0s and 1s only).</span>
+            </div>
+
+            <!-- Action Button -->
+            <button id="convertBtn" class="primary-btn">Convert Grade</button>
+
+            <!-- Output Section -->
+            <div class="output-group">
+                <label for="decimalOutput">Resulting Grade / Score (0 - 255)</label>
+                <div class="output-wrapper">
+                    <input type="text" id="decimalOutput" readonly placeholder="---">
+                </div>
+            </div>
+        </main>
+
+        <!-- Tech Stack Badges -->
+        <footer class="tech-stack">
+            <div class="badge">
+                <span class="icon">JS</span>
+                <p>Binary Logic</p>
+            </div>
+            <div class="badge">
+                <span class="icon">CSS3</span>
+                <p>Dynamic Styling</p>
+            </div>
+            <div class="badge">
+                <span class="icon">HTML5</span>
+                <p>Mobile-First Layout</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
