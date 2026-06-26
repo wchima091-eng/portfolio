@@ -2,33 +2,224 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>CS Academic Search & Parser</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0b0f19">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Study Assistant | Workstation</title>
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --panel-bg: rgba(20, 30, 54, 0.6);
+            --accent-green: #00dfa2;
+            --accent-glow: rgba(0, 223, 162, 0.12);
+            --text-bright: #f1f5f9;
+            --text-dim: #64748b;
+            --card-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-dark) 80%);
+            color: var(--text-bright);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* --- Elite Floating Navigation --- */
+        .back-hub-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            color: var(--text-bright);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 10px 22px;
+            background-color: rgba(30, 41, 59, 0.4);
+            border-radius: 50px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-hub-btn:hover {
+            color: var(--accent-green);
+            border-color: var(--accent-green);
+            background-color: var(--accent-glow);
+            transform: translateX(-4px);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        /* --- Header Station --- */
+        header {
+            margin-bottom: 45px;
+            border-left: 3px solid var(--accent-green);
+            padding-left: 20px;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* --- Architecture Grid Layout --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .main-status-panel {
+            grid-column: 1 / -1;
+            background: var(--panel-bg);
+            border-radius: 14px;
+            padding: 32px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(8px);
+        }
+
+        .card-header-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 223, 162, 0.08);
+            color: var(--accent-green);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(0, 223, 162, 0.15);
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 223, 162, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 223, 162, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 223, 162, 0); }
+        }
+
+        /* --- Modules Secondary Cards --- */
+        .module-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 223, 162, 0.3);
+            background: var(--panel-bg);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .module-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-card h3::before {
+            content: '▫';
+            color: var(--accent-green);
+        }
+
+        .module-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <h1>CS Academic Search & Parser</h1>
-            <p>Smart Fallbacks & Dynamic Manual Parsing</p>
+
+    <div class="container">
+        
+        <!-- Premium Navigation Anchor -->
+        <a href="../index.html" class="back-hub-btn">← Back to Portfolio Hub</a>
+
+        <header>
+            <h1>CS Study Assistant</h1>
+            <p>Central engineering environment for tracking logic optimization blueprints and systemic course architectures.</p>
         </header>
 
-        <div class="manual-extractor">
-            <h3>📚 Course Manual Key-Point Extractor</h3>
-            <textarea id="manualInput" rows="4" placeholder="Paste chapters or paragraphs from your course manual text here..."></textarea>
-            <button id="parseBtn" class="action-btn">Extract & Web-Source Summary</button>
-        </div>
+        <main class="dashboard-grid">
+            
+            <!-- Main Control Board Module -->
+            <section class="main-status-panel">
+                <div class="card-header-group">
+                    <h2>System Operational Status</h2>
+                    <div class="status-badge">
+                        <span class="pulse-dot"></span>
+                        Environment Live
+                    </div>
+                </div>
+                <p style="color: #94a3b8;">Welcome to your central tracking repository. This localized workbench is linked directly into your root hub architectures, built to optimize academic logging pipelines and handle complex formatting metrics flawlessly.</p>
+            </section>
 
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search saved/extracted notes..." autocomplete="off">
-        </div>
+            <!-- Card Sub-Module 1 -->
+            <article class="module-card">
+                <h3>Digital Logic Structures</h3>
+                <p>Tracking system optimization pathways, core Boolean expressions, minimization tables, and map structures.</p>
+            </article>
 
-        <main class="cards-deck" id="resultsEngine">
-            </main>
+            <!-- Card Sub-Module 2 -->
+            <article class="module-card">
+                <h3>Computer Architecture</h3>
+                <p>Analyzing foundational processing units, hardware control maps, register memory steps, and Von Neumann pipelines.</p>
+            </article>
+
+            <!-- Card Sub-Module 3 -->
+            <article class="module-card">
+                <h3>Object-Oriented Logic</h3>
+                <p>Structuring systemic component definitions, class inheritance models, encapsulation boundaries, and syntax builds.</p>
+            </article>
+
+        </main>
+
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>
